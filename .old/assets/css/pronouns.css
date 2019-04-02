@@ -1,0 +1,21 @@
+.pronouns label {
+  display: flex;
+  justify-content: space-between;
+}
+.pronouns label .toggle {
+  color: #fff;
+  width: 2rem;
+  height: 1rem;
+  border: 1px dotted #000;
+}
+.pronouns .preview {
+  grid-row: 2/span 2;
+}
+.pronouns .preview .pro {
+  font-style: italic;
+  font-weight: bold;
+  color: #d44500;
+}
+.pronouns .preview .pro:empty::after {
+  content: '...';
+}

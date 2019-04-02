@@ -1,0 +1,26 @@
+@import 'vars'
+
+// PRONOUNS
+.pronouns
+    // label + description
+    label
+        display flex
+        justify-content space-between
+        // toggle
+        .toggle
+            color white
+            width 2rem
+            height 1rem
+            border 1px dotted black
+
+    // pronoun preview
+    .preview
+        // border 1px solid green
+        grid-row 2 / span 2
+        .pro
+            font-style italic
+            font-weight bold
+            color primary
+            // if no pronoun is selected, show placeholder
+            &:empty::after
+                content '...'
