@@ -1,28 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <pronoun-form></pronoun-form>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PronounForm from './components/PronounForm.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    PronounForm
   }
 }
 </script>
 
-<style lang="stylus" scoped>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="stylus">
+@import 'assets/stylus/vars'
+
+body
+  margin 0
+  color f-color
+#app
+  font-family font
+  height 100vh
+  background-color lighten(secondary, 75%)
+  display flex
+  justify-content center
+  align-items center
 </style>
