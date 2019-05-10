@@ -3,23 +3,9 @@
     <div class="form-grp required">
       <label class="form-grp-label" for="name">Name</label>
       <div class="form-grp-descr">Don't worry, you can change this later!</div>
-      <input type="text" name="name" id="name" class="input" required>
+      <input v-model="nameRaw" type="text" name="name" id="name" class="input" required>
     </div>
-    <div class="form-grp optional">
-      <label class="form-grp-label" for="pronouns">Pronouns</label>
-      <div class="form-grp-descr">Leave this empty if you want to use your name.</div>
-      <pronouns></pronouns>
-    </div>
-    <div style="display:flex;">
-      <div style="flex:1">
-        Here are some sample sentences using your selected pronouns.
-      </div>
-      <div style="flex:2">
-        <div><span class="sub"></span> is interested in your book.</div>
-        <div>Send <span class="obj"></span> a message.</div>
-        <div>This is <span class="pos"></span> fifth loan.</div>
-      </div>
-    </div>
+    <pronouns :name="name"></pronouns>
     <div class="form-grp form-btns">
       <button class="btn btn-reset" type="reset">Cancel</button>
       <button class="btn btn-submit" type="submit">Gender is fake</button>
@@ -34,11 +20,21 @@ export default {
   name: 'PronounForm',
   components: {
     Pronouns
+  },
+  data () {
+    return {
+      nameRaw: ''
+    }
+  },
+  computed: {
+    name: function() {
+      return this.nameRaw.trim()
+    }
   }
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 @import '../assets/stylus/vars'
 
 // form wrapper
@@ -78,10 +74,6 @@ export default {
   &-btns
     flex-direction row
     justify-content end
-
-.ex .ex-pro
-  font-weight bold
-  color primary
 
 // button input
 .btn
