@@ -6,19 +6,35 @@
       <input type="text" name="name" id="name" class="input" required>
     </div>
     <div class="form-grp optional">
-      <label class="form-grp-label" for="name">Pronouns</label>
-      <!-- <pronouns></pronouns> -->
+      <label class="form-grp-label" for="pronouns">Pronouns</label>
+      <div class="form-grp-descr">Leave this empty if you want to use your name.</div>
+      <pronouns></pronouns>
+    </div>
+    <div style="display:flex;">
+      <div style="flex:1">
+        Here are some sample sentences using your selected pronouns.
+      </div>
+      <div style="flex:2">
+        <div><span class="sub"></span> is interested in your book.</div>
+        <div>Send <span class="obj"></span> a message.</div>
+        <div>This is <span class="pos"></span> fifth loan.</div>
+      </div>
     </div>
     <div class="form-grp form-btns">
-      <button class="btn btn-reset">Cancel</button>
-      <button class="btn btn-submit">Gender is fake</button>
+      <button class="btn btn-reset" type="reset">Cancel</button>
+      <button class="btn btn-submit" type="submit">Gender is fake</button>
     </div>
   </form>
 </template>
 
 <script>
+import Pronouns from './Pronouns.vue'
+
 export default {
-  name: 'PronounForm'
+  name: 'PronounForm',
+  components: {
+    Pronouns
+  }
 }
 </script>
 
@@ -27,14 +43,15 @@ export default {
 
 // form wrapper
 .form
+  position relative
+  top -(gutter * 10)
   min-width 300px
-  max-width 700px
+  max-width 500px
   background-color white
   padding (gutter * 2)
   border-radius (round * 2)
   border-right  bw solid secondary
   border-bottom bw solid secondary
-  margin-bottom (gutter * 10)
 
   // input group
   &-grp
@@ -62,6 +79,10 @@ export default {
     flex-direction row
     justify-content end
 
+.ex .ex-pro
+  font-weight bold
+  color primary
+
 // button input
 .btn
   cursor pointer
@@ -86,7 +107,9 @@ export default {
   border none
   border-bottom bw solid primary 
   background-color lighten(secondary, 75%)
-  // disabled input
-  &:disabled
-    border-bottom-color secondary
+  transition background-color time func
+  // focused input
+  &:focus,
+  &:focus-within
+    background-color lighten(secondary, 50%)
 </style>
