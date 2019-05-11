@@ -9,9 +9,16 @@
     </div>
 
     <div class="ex">
-      <div><span class="ex-prn sub">{{ sub }}</span> {{sub.toLowerCase()=='they'?'are':'is'}} interested in your book.</div>
-      <div>Send <span class="ex-prn obj">{{ obj }}</span> a message.</div>
-      <div>This is <span class="ex-prn pos">{{ pos }}</span> fifth loan.</div>
+      <!-- all passages are adapted from chapter 32 of Moby Dick -->
+      <div class="phrase">
+        On the subject of whales, <span class="ex-prn sub">{{ sub }}</span> {{ sub=='they' ? 'are' : 'is' }} the best existing authority.
+      </div>
+      <div class="phrase">
+        This would certainly be very convenient to <span class="ex-prn obj">{{ obj }}</span> for reading.
+      </div>
+      <div class="phrase">
+        All of <span class="ex-prn pos">{{ pos }}</span> peculiarities will, in other places, be enlarged upon.
+      </div>
     </div>
   </div>
 </template>
@@ -31,15 +38,15 @@ export default {
   },
   computed: {
     sub: function() {
-      let prn = this.subRaw.trim()
+      let prn = this.subRaw.trim().toLowerCase()
       if (!prn) {
         return this.name ? this.name : '-'
       } else {
-        return prn.charAt(0).toUpperCase() + prn.slice(1)
+        return prn
       }
     },
     obj: function() {
-      let prn = this.objRaw.trim()
+      let prn = this.objRaw.trim().toLowerCase()
       if (!prn) {
         return this.name ? this.name : '-'
       } else {
@@ -47,9 +54,9 @@ export default {
       }
     },
     pos: function() {
-      let prn = this.posRaw.trim()
+      let prn = this.posRaw.trim().toLowerCase()
       if (!prn) {
-        return this.name ? this.name : '-'
+        return this.name ? this.name + "'s" : '-'
       } else {
         return prn
       }
@@ -82,7 +89,11 @@ export default {
       color lighten(f-color, 50%)
 
 // examples
-.ex .ex-prn
-  font-weight bold
-  color primary
+.ex
+  //
+  .phrase
+    margin-top (gutter / 2)
+  .ex-prn
+    font-weight bold
+    color primary
 </style>
